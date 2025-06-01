@@ -14,7 +14,7 @@ export default async function handler(
     const data = await fs.readFile(dbPath, "utf-8");
     const json = JSON.parse(data);
     const photographer = (json.photographers || []).find(
-      (p: any) => String(p.id) === String(id)
+      (p: { id: number }) => String(p.id) === String(id)
     );
     if (!photographer) {
       return res.status(404).json({ error: "Photographer not found" });

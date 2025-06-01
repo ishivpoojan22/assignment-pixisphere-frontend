@@ -4,10 +4,10 @@ import { usePhotographerStore } from "@/store/photographers";
 import PhotographerCard from "@/components/PhotographerCard";
 import FiltersSidebar from "@/components/FiltersSidebar";
 import SearchBar from "@/components/SearchBar";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import styles from "./category.module.css";
 
- 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const css = styles as any;
 
 const allStyles = ["Traditional", "Candid", "Studio", "Outdoor", "Indoor"];
@@ -33,7 +33,6 @@ const CategoryListingPage = () => {
   const [city, setCity] = useState("");
   const [sort, setSort] = useState("recent");
   const [search, setSearch] = useState("");
-  const router = useRouter();
   const params = useParams();
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const CategoryListingPage = () => {
 
   useEffect(() => {
     let result = [...photographers];
-    
+
     if (city) {
       result = result.filter(
         (p) => p.location.toLowerCase() === city.toLowerCase()
@@ -89,10 +88,6 @@ const CategoryListingPage = () => {
 
   const [visible, setVisible] = useState(6);
   const handleLoadMore = () => setVisible((v) => v + 6);
-
-  const handleViewProfile = (id: number) => {
-    router.push(`/photographer/${id}`);
-  };
 
   return (
     <div className={css.categoryPageWrapper}>
@@ -146,7 +141,6 @@ const CategoryListingPage = () => {
               <PhotographerCard
                 key={photographer.id}
                 photographer={photographer}
-                onViewProfile={handleViewProfile}
               />
             ))}
           </div>

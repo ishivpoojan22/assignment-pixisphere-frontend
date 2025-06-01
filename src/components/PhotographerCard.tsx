@@ -5,7 +5,6 @@ import styles from "./PhotographerCard.module.css";
 
 interface PhotographerCardProps {
   photographer: Photographer;
-  onViewProfile: (id: number) => void;
 }
 
 const getPlaceholderImage = (id: number) => {
@@ -19,7 +18,6 @@ const getPlaceholderImage = (id: number) => {
 
 const PhotographerCard: React.FC<PhotographerCardProps> = ({
   photographer,
-  onViewProfile,
 }) => {
   const router = useRouter();
   return (

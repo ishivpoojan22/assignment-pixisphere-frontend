@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { usePhotographerStore } from "@/store/photographers";
 import PhotographerCard from "@/components/PhotographerCard";
 import FiltersSidebar from "@/components/FiltersSidebar";
@@ -10,9 +9,7 @@ import styles from "./photographers.module.css";
 const allStyles = ["Traditional", "Candid", "Studio", "Outdoor", "Indoor"];
 
 const PhotographersPage = () => {
-  const router = useRouter();
-  const { photographers, fetchPhotographers, loading, error } =
-    usePhotographerStore();
+  const { photographers, fetchPhotographers } = usePhotographerStore();
 
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 30000]);
   const [rating, setRating] = useState(0);
@@ -83,9 +80,6 @@ const PhotographersPage = () => {
             <PhotographerCard
               key={photographer.id}
               photographer={photographer}
-              onViewProfile={() =>
-                router.push(`/photographer/${photographer.id}`)
-              }
             />
           ))}
         </div>
